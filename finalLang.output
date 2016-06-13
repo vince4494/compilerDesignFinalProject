@@ -1,0 +1,1029 @@
+Terminals which are not used
+
+   END
+   IF_SIMPLE
+   ELSE
+   UMINUS
+   ERROR
+
+
+Grammar
+
+    0 $accept: expr $end
+
+    1 list: list expr
+    2     | /* empty */
+
+    3 expr: BEGIN_P PRINTLN expr END_P
+    4     | BEGIN_P PRINT expr END_P
+    5     | BEGIN_P PRINT STRING END_P
+    6     | BEGIN_P PRINTLN STRING END_P
+    7     | BEGIN_P IF expr expr END_P
+    8     | BEGIN_P IF expr expr expr END_P
+    9     | BEGIN_P WHILE expr expr END_P
+   10     | BEGIN_P BEGIN_C list END_C END_P
+   11     | BEGIN_P DO list expr END_P
+   12     | READ
+   13     | BEGIN_P VAR_ASSIGN VARIABLE expr END_P
+   14     | BEGIN_P LESS expr expr END_P
+   15     | BEGIN_P GREATER expr expr END_P
+   16     | BEGIN_P PLUS expr expr END_P
+   17     | BEGIN_P MINUS expr expr END_P
+   18     | BEGIN_P STAR expr expr END_P
+   19     | BEGIN_P SLASH expr expr END_P
+   20     | BEGIN_P EQUAL expr expr END_P
+   21     | BEGIN_P NOT_EQUAL expr expr END_P
+   22     | BEGIN_P NOT expr END_P
+   23     | BEGIN_P MINUS expr END_P
+   24     | NUMBER
+   25     | VARIABLE
+   26     | BEGIN_P READ END_P
+   27     | BEGIN_P PLUS_EQUAL VARIABLE expr END_P
+   28     | BEGIN_P MINUS_EQUAL VARIABLE expr END_P
+   29     | BEGIN_P MULT_EQUAL VARIABLE expr END_P
+   30     | BEGIN_P DIV_EQUAL VARIABLE expr END_P
+   31     | BEGIN_P PLUS_PLUS VARIABLE END_P
+   32     | BEGIN_P MINUS_MINUS VARIABLE END_P
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+BEGIN_P (258) 3 4 5 6 7 8 9 10 11 13 14 15 16 17 18 19 20 21 22 23
+    26 27 28 29 30 31 32
+END_P (259) 3 4 5 6 7 8 9 10 11 13 14 15 16 17 18 19 20 21 22 23 26
+    27 28 29 30 31 32
+END (260)
+PRINT (261) 4 5
+READ (262) 12 26
+IF (263) 7 8
+DO (264) 11
+WHILE (265) 9
+PRINTLN (266) 3 6
+PLUS_EQUAL (267) 27
+MINUS_EQUAL (268) 28
+MULT_EQUAL (269) 29
+DIV_EQUAL (270) 30
+PLUS_PLUS (271) 31
+MINUS_MINUS (272) 32
+IF_SIMPLE (273)
+ELSE (274)
+VAR_ASSIGN (275) 13
+NOT (276) 22
+NOT_EQUAL (277) 21
+EQUAL (278) 20
+GREATER (279) 15
+LESS (280) 14
+MINUS (281) 17 23
+PLUS (282) 16
+SLASH (283) 19
+STAR (284) 18
+UMINUS (285)
+BEGIN_C (286) 10
+END_C (287) 10
+VARIABLE (288) 13 25 27 28 29 30 31 32
+NUMBER (289) 24
+STRING (290) 5 6
+ERROR (291)
+
+
+Nonterminals, with rules where they appear
+
+$accept (37)
+    on left: 0
+list (38)
+    on left: 1 2, on right: 1 10 11
+expr (39)
+    on left: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+    24 25 26 27 28 29 30 31 32, on right: 0 1 3 4 7 8 9 11 13 14 15
+    16 17 18 19 20 21 22 23 27 28 29 30
+
+
+state 0
+
+    0 $accept: . expr $end
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 5
+
+
+state 1
+
+    3 expr: BEGIN_P . PRINTLN expr END_P
+    4     | BEGIN_P . PRINT expr END_P
+    5     | BEGIN_P . PRINT STRING END_P
+    6     | BEGIN_P . PRINTLN STRING END_P
+    7     | BEGIN_P . IF expr expr END_P
+    8     | BEGIN_P . IF expr expr expr END_P
+    9     | BEGIN_P . WHILE expr expr END_P
+   10     | BEGIN_P . BEGIN_C list END_C END_P
+   11     | BEGIN_P . DO list expr END_P
+   13     | BEGIN_P . VAR_ASSIGN VARIABLE expr END_P
+   14     | BEGIN_P . LESS expr expr END_P
+   15     | BEGIN_P . GREATER expr expr END_P
+   16     | BEGIN_P . PLUS expr expr END_P
+   17     | BEGIN_P . MINUS expr expr END_P
+   18     | BEGIN_P . STAR expr expr END_P
+   19     | BEGIN_P . SLASH expr expr END_P
+   20     | BEGIN_P . EQUAL expr expr END_P
+   21     | BEGIN_P . NOT_EQUAL expr expr END_P
+   22     | BEGIN_P . NOT expr END_P
+   23     | BEGIN_P . MINUS expr END_P
+   26     | BEGIN_P . READ END_P
+   27     | BEGIN_P . PLUS_EQUAL VARIABLE expr END_P
+   28     | BEGIN_P . MINUS_EQUAL VARIABLE expr END_P
+   29     | BEGIN_P . MULT_EQUAL VARIABLE expr END_P
+   30     | BEGIN_P . DIV_EQUAL VARIABLE expr END_P
+   31     | BEGIN_P . PLUS_PLUS VARIABLE END_P
+   32     | BEGIN_P . MINUS_MINUS VARIABLE END_P
+
+    PRINT        shift, and go to state 6
+    READ         shift, and go to state 7
+    IF           shift, and go to state 8
+    DO           shift, and go to state 9
+    WHILE        shift, and go to state 10
+    PRINTLN      shift, and go to state 11
+    PLUS_EQUAL   shift, and go to state 12
+    MINUS_EQUAL  shift, and go to state 13
+    MULT_EQUAL   shift, and go to state 14
+    DIV_EQUAL    shift, and go to state 15
+    PLUS_PLUS    shift, and go to state 16
+    MINUS_MINUS  shift, and go to state 17
+    VAR_ASSIGN   shift, and go to state 18
+    NOT          shift, and go to state 19
+    NOT_EQUAL    shift, and go to state 20
+    EQUAL        shift, and go to state 21
+    GREATER      shift, and go to state 22
+    LESS         shift, and go to state 23
+    MINUS        shift, and go to state 24
+    PLUS         shift, and go to state 25
+    SLASH        shift, and go to state 26
+    STAR         shift, and go to state 27
+    BEGIN_C      shift, and go to state 28
+
+
+state 2
+
+   12 expr: READ .
+
+    $default  reduce using rule 12 (expr)
+
+
+state 3
+
+   25 expr: VARIABLE .
+
+    $default  reduce using rule 25 (expr)
+
+
+state 4
+
+   24 expr: NUMBER .
+
+    $default  reduce using rule 24 (expr)
+
+
+state 5
+
+    0 $accept: expr . $end
+
+    $end  shift, and go to state 29
+
+
+state 6
+
+    4 expr: BEGIN_P PRINT . expr END_P
+    5     | BEGIN_P PRINT . STRING END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+    STRING    shift, and go to state 30
+
+    expr  go to state 31
+
+
+state 7
+
+   26 expr: BEGIN_P READ . END_P
+
+    END_P  shift, and go to state 32
+
+
+state 8
+
+    7 expr: BEGIN_P IF . expr expr END_P
+    8     | BEGIN_P IF . expr expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 33
+
+
+state 9
+
+   11 expr: BEGIN_P DO . list expr END_P
+
+    $default  reduce using rule 2 (list)
+
+    list  go to state 34
+
+
+state 10
+
+    9 expr: BEGIN_P WHILE . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 35
+
+
+state 11
+
+    3 expr: BEGIN_P PRINTLN . expr END_P
+    6     | BEGIN_P PRINTLN . STRING END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+    STRING    shift, and go to state 36
+
+    expr  go to state 37
+
+
+state 12
+
+   27 expr: BEGIN_P PLUS_EQUAL . VARIABLE expr END_P
+
+    VARIABLE  shift, and go to state 38
+
+
+state 13
+
+   28 expr: BEGIN_P MINUS_EQUAL . VARIABLE expr END_P
+
+    VARIABLE  shift, and go to state 39
+
+
+state 14
+
+   29 expr: BEGIN_P MULT_EQUAL . VARIABLE expr END_P
+
+    VARIABLE  shift, and go to state 40
+
+
+state 15
+
+   30 expr: BEGIN_P DIV_EQUAL . VARIABLE expr END_P
+
+    VARIABLE  shift, and go to state 41
+
+
+state 16
+
+   31 expr: BEGIN_P PLUS_PLUS . VARIABLE END_P
+
+    VARIABLE  shift, and go to state 42
+
+
+state 17
+
+   32 expr: BEGIN_P MINUS_MINUS . VARIABLE END_P
+
+    VARIABLE  shift, and go to state 43
+
+
+state 18
+
+   13 expr: BEGIN_P VAR_ASSIGN . VARIABLE expr END_P
+
+    VARIABLE  shift, and go to state 44
+
+
+state 19
+
+   22 expr: BEGIN_P NOT . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 45
+
+
+state 20
+
+   21 expr: BEGIN_P NOT_EQUAL . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 46
+
+
+state 21
+
+   20 expr: BEGIN_P EQUAL . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 47
+
+
+state 22
+
+   15 expr: BEGIN_P GREATER . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 48
+
+
+state 23
+
+   14 expr: BEGIN_P LESS . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 49
+
+
+state 24
+
+   17 expr: BEGIN_P MINUS . expr expr END_P
+   23     | BEGIN_P MINUS . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 50
+
+
+state 25
+
+   16 expr: BEGIN_P PLUS . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 51
+
+
+state 26
+
+   19 expr: BEGIN_P SLASH . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 52
+
+
+state 27
+
+   18 expr: BEGIN_P STAR . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 53
+
+
+state 28
+
+   10 expr: BEGIN_P BEGIN_C . list END_C END_P
+
+    $default  reduce using rule 2 (list)
+
+    list  go to state 54
+
+
+state 29
+
+    0 $accept: expr $end .
+
+    $default  accept
+
+
+state 30
+
+    5 expr: BEGIN_P PRINT STRING . END_P
+
+    END_P  shift, and go to state 55
+
+
+state 31
+
+    4 expr: BEGIN_P PRINT expr . END_P
+
+    END_P  shift, and go to state 56
+
+
+state 32
+
+   26 expr: BEGIN_P READ END_P .
+
+    $default  reduce using rule 26 (expr)
+
+
+state 33
+
+    7 expr: BEGIN_P IF expr . expr END_P
+    8     | BEGIN_P IF expr . expr expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 57
+
+
+state 34
+
+    1 list: list . expr
+   11 expr: BEGIN_P DO list . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 58
+
+
+state 35
+
+    9 expr: BEGIN_P WHILE expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 59
+
+
+state 36
+
+    6 expr: BEGIN_P PRINTLN STRING . END_P
+
+    END_P  shift, and go to state 60
+
+
+state 37
+
+    3 expr: BEGIN_P PRINTLN expr . END_P
+
+    END_P  shift, and go to state 61
+
+
+state 38
+
+   27 expr: BEGIN_P PLUS_EQUAL VARIABLE . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 62
+
+
+state 39
+
+   28 expr: BEGIN_P MINUS_EQUAL VARIABLE . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 63
+
+
+state 40
+
+   29 expr: BEGIN_P MULT_EQUAL VARIABLE . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 64
+
+
+state 41
+
+   30 expr: BEGIN_P DIV_EQUAL VARIABLE . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 65
+
+
+state 42
+
+   31 expr: BEGIN_P PLUS_PLUS VARIABLE . END_P
+
+    END_P  shift, and go to state 66
+
+
+state 43
+
+   32 expr: BEGIN_P MINUS_MINUS VARIABLE . END_P
+
+    END_P  shift, and go to state 67
+
+
+state 44
+
+   13 expr: BEGIN_P VAR_ASSIGN VARIABLE . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 68
+
+
+state 45
+
+   22 expr: BEGIN_P NOT expr . END_P
+
+    END_P  shift, and go to state 69
+
+
+state 46
+
+   21 expr: BEGIN_P NOT_EQUAL expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 70
+
+
+state 47
+
+   20 expr: BEGIN_P EQUAL expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 71
+
+
+state 48
+
+   15 expr: BEGIN_P GREATER expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 72
+
+
+state 49
+
+   14 expr: BEGIN_P LESS expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 73
+
+
+state 50
+
+   17 expr: BEGIN_P MINUS expr . expr END_P
+   23     | BEGIN_P MINUS expr . END_P
+
+    BEGIN_P   shift, and go to state 1
+    END_P     shift, and go to state 74
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 75
+
+
+state 51
+
+   16 expr: BEGIN_P PLUS expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 76
+
+
+state 52
+
+   19 expr: BEGIN_P SLASH expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 77
+
+
+state 53
+
+   18 expr: BEGIN_P STAR expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 78
+
+
+state 54
+
+    1 list: list . expr
+   10 expr: BEGIN_P BEGIN_C list . END_C END_P
+
+    BEGIN_P   shift, and go to state 1
+    READ      shift, and go to state 2
+    END_C     shift, and go to state 79
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 80
+
+
+state 55
+
+    5 expr: BEGIN_P PRINT STRING END_P .
+
+    $default  reduce using rule 5 (expr)
+
+
+state 56
+
+    4 expr: BEGIN_P PRINT expr END_P .
+
+    $default  reduce using rule 4 (expr)
+
+
+state 57
+
+    7 expr: BEGIN_P IF expr expr . END_P
+    8     | BEGIN_P IF expr expr . expr END_P
+
+    BEGIN_P   shift, and go to state 1
+    END_P     shift, and go to state 81
+    READ      shift, and go to state 2
+    VARIABLE  shift, and go to state 3
+    NUMBER    shift, and go to state 4
+
+    expr  go to state 82
+
+
+state 58
+
+    1 list: list expr .
+   11 expr: BEGIN_P DO list expr . END_P
+
+    END_P  shift, and go to state 83
+
+    $default  reduce using rule 1 (list)
+
+
+state 59
+
+    9 expr: BEGIN_P WHILE expr expr . END_P
+
+    END_P  shift, and go to state 84
+
+
+state 60
+
+    6 expr: BEGIN_P PRINTLN STRING END_P .
+
+    $default  reduce using rule 6 (expr)
+
+
+state 61
+
+    3 expr: BEGIN_P PRINTLN expr END_P .
+
+    $default  reduce using rule 3 (expr)
+
+
+state 62
+
+   27 expr: BEGIN_P PLUS_EQUAL VARIABLE expr . END_P
+
+    END_P  shift, and go to state 85
+
+
+state 63
+
+   28 expr: BEGIN_P MINUS_EQUAL VARIABLE expr . END_P
+
+    END_P  shift, and go to state 86
+
+
+state 64
+
+   29 expr: BEGIN_P MULT_EQUAL VARIABLE expr . END_P
+
+    END_P  shift, and go to state 87
+
+
+state 65
+
+   30 expr: BEGIN_P DIV_EQUAL VARIABLE expr . END_P
+
+    END_P  shift, and go to state 88
+
+
+state 66
+
+   31 expr: BEGIN_P PLUS_PLUS VARIABLE END_P .
+
+    $default  reduce using rule 31 (expr)
+
+
+state 67
+
+   32 expr: BEGIN_P MINUS_MINUS VARIABLE END_P .
+
+    $default  reduce using rule 32 (expr)
+
+
+state 68
+
+   13 expr: BEGIN_P VAR_ASSIGN VARIABLE expr . END_P
+
+    END_P  shift, and go to state 89
+
+
+state 69
+
+   22 expr: BEGIN_P NOT expr END_P .
+
+    $default  reduce using rule 22 (expr)
+
+
+state 70
+
+   21 expr: BEGIN_P NOT_EQUAL expr expr . END_P
+
+    END_P  shift, and go to state 90
+
+
+state 71
+
+   20 expr: BEGIN_P EQUAL expr expr . END_P
+
+    END_P  shift, and go to state 91
+
+
+state 72
+
+   15 expr: BEGIN_P GREATER expr expr . END_P
+
+    END_P  shift, and go to state 92
+
+
+state 73
+
+   14 expr: BEGIN_P LESS expr expr . END_P
+
+    END_P  shift, and go to state 93
+
+
+state 74
+
+   23 expr: BEGIN_P MINUS expr END_P .
+
+    $default  reduce using rule 23 (expr)
+
+
+state 75
+
+   17 expr: BEGIN_P MINUS expr expr . END_P
+
+    END_P  shift, and go to state 94
+
+
+state 76
+
+   16 expr: BEGIN_P PLUS expr expr . END_P
+
+    END_P  shift, and go to state 95
+
+
+state 77
+
+   19 expr: BEGIN_P SLASH expr expr . END_P
+
+    END_P  shift, and go to state 96
+
+
+state 78
+
+   18 expr: BEGIN_P STAR expr expr . END_P
+
+    END_P  shift, and go to state 97
+
+
+state 79
+
+   10 expr: BEGIN_P BEGIN_C list END_C . END_P
+
+    END_P  shift, and go to state 98
+
+
+state 80
+
+    1 list: list expr .
+
+    $default  reduce using rule 1 (list)
+
+
+state 81
+
+    7 expr: BEGIN_P IF expr expr END_P .
+
+    $default  reduce using rule 7 (expr)
+
+
+state 82
+
+    8 expr: BEGIN_P IF expr expr expr . END_P
+
+    END_P  shift, and go to state 99
+
+
+state 83
+
+   11 expr: BEGIN_P DO list expr END_P .
+
+    $default  reduce using rule 11 (expr)
+
+
+state 84
+
+    9 expr: BEGIN_P WHILE expr expr END_P .
+
+    $default  reduce using rule 9 (expr)
+
+
+state 85
+
+   27 expr: BEGIN_P PLUS_EQUAL VARIABLE expr END_P .
+
+    $default  reduce using rule 27 (expr)
+
+
+state 86
+
+   28 expr: BEGIN_P MINUS_EQUAL VARIABLE expr END_P .
+
+    $default  reduce using rule 28 (expr)
+
+
+state 87
+
+   29 expr: BEGIN_P MULT_EQUAL VARIABLE expr END_P .
+
+    $default  reduce using rule 29 (expr)
+
+
+state 88
+
+   30 expr: BEGIN_P DIV_EQUAL VARIABLE expr END_P .
+
+    $default  reduce using rule 30 (expr)
+
+
+state 89
+
+   13 expr: BEGIN_P VAR_ASSIGN VARIABLE expr END_P .
+
+    $default  reduce using rule 13 (expr)
+
+
+state 90
+
+   21 expr: BEGIN_P NOT_EQUAL expr expr END_P .
+
+    $default  reduce using rule 21 (expr)
+
+
+state 91
+
+   20 expr: BEGIN_P EQUAL expr expr END_P .
+
+    $default  reduce using rule 20 (expr)
+
+
+state 92
+
+   15 expr: BEGIN_P GREATER expr expr END_P .
+
+    $default  reduce using rule 15 (expr)
+
+
+state 93
+
+   14 expr: BEGIN_P LESS expr expr END_P .
+
+    $default  reduce using rule 14 (expr)
+
+
+state 94
+
+   17 expr: BEGIN_P MINUS expr expr END_P .
+
+    $default  reduce using rule 17 (expr)
+
+
+state 95
+
+   16 expr: BEGIN_P PLUS expr expr END_P .
+
+    $default  reduce using rule 16 (expr)
+
+
+state 96
+
+   19 expr: BEGIN_P SLASH expr expr END_P .
+
+    $default  reduce using rule 19 (expr)
+
+
+state 97
+
+   18 expr: BEGIN_P STAR expr expr END_P .
+
+    $default  reduce using rule 18 (expr)
+
+
+state 98
+
+   10 expr: BEGIN_P BEGIN_C list END_C END_P .
+
+    $default  reduce using rule 10 (expr)
+
+
+state 99
+
+    8 expr: BEGIN_P IF expr expr expr END_P .
+
+    $default  reduce using rule 8 (expr)

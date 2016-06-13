@@ -1,0 +1,35 @@
+(do
+	
+	(printLn "Type in the 3 numbers you would like to see thw highest, lowest, and average of!")
+	(printLn "First number:")
+	(= a (read))
+	(printLn "Second number:")
+	(= b (read))
+	(printLn "Third number:")
+	(= c (read))
+
+	(= smallest a)
+	(if(> smallest b)(= smallest b))
+	(if(> smallest c)(= smallest c))
+
+	(= highest a)
+	(if(< highest b)(= highest b))
+	(if(< highest c)(= highest c))
+
+	(= firstTwo (+ a b))
+	(= sum (+ first c))
+	(= average (/ sum 3))
+
+	(printLn "")
+	(printLn "Average:")
+	(printLn average)
+	(printLn "Smallest:")
+	(printLn smallest)
+	(printLn "Highest:")
+	(printLn highest)
+
+
+
+
+
+)

@@ -17,7 +17,7 @@
 	(if(< highest c)(= highest c))
 
 	(= firstTwo (+ a b))
-	(= sum (+ first c))
+	(= sum (+ firstTwo c))
 	(= average (/ sum 3))
 
 	(printLn "")
